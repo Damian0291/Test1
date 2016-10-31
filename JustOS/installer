@@ -9,7 +9,7 @@ end
 fs.makeDir("/JustOS/icons")
 fs.makeDir("/JustOS/icons/programs")
 fs.makeDir("/JustOS/monicons")
-fs.makeDir("/JUstOS/monicons/programs")
+fs.makeDir("/JustOS/monicons/programs")
 
 downloadFile("/JustOS/Just0291", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/Just0291")
 downloadFile("/JustOS/Desktop", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/Desktop")
