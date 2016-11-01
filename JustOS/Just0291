@@ -189,7 +189,7 @@ function drawTaskBar()
 end
 
 function checkTaskBar(xPos, yPos)
-	w, h = term.getSize()
+	w, h = term.getSize(1)
 	if(yPos == h)then
 		if(xPos <= 4)then
 			Justmenu['active'] = not Justmenu['active']
