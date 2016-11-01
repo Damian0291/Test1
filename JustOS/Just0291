@@ -176,7 +176,7 @@ function drawTaskBar()
 		term.setBackgroundColor(colors.red)
 	end	
 	term.setCursorPos(1, h)
-	term.write("Just0291")
+	term.write("just")
 	position = 6
 	for id, data in pairs(windows) do
 		if data['minimised'] == true then
