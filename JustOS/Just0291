@@ -33,7 +33,9 @@ rItemID = 1
 monitorside = ""
 monitor = ""
 
-__W_i_n_d_o_w_s____e_t_c____
+--------------------------
+-------windows------------
+--------------------------
 
 function drawWallpaper()
 	paintutils.drawImage(Desktop, 1, 1)
@@ -363,7 +365,7 @@ function textBox(question, correction, second)
 	end
 end
 
-_____R_c_l_i_c_k______
+----------rclick---------------
 
 function rClearItems()
 	rItemID = 1
@@ -441,7 +443,7 @@ function rClickItem(ID)
 	rClickItems[ID]['func']()
 end
 
-_____D_e_s_k_t_o_p____________
+------------Deskop-----------------
 
 function checkDestktop(xPos, yPos)
 	w, h = term.getSize()
@@ -459,7 +461,7 @@ function editWallpaper()
 	wall = paintutils.loadImage("/JustOS/Desktop")
 end
 
-____M_o_n_i_c_o_n_s_______
+---------monicons------------
 
 function changeMonitor()
 	detectMonitors()
@@ -707,7 +709,7 @@ function deleteMonIconW()
 end
 
 
-____I_c_o_n_s______
+-------icons-------------
 
 
 function addIcon()
@@ -848,7 +850,7 @@ function clickIcon(id)
 	shell.run("/JustOS/icons/programs/" .. string.gsub(icons[id]['name'], " ", "_"))
 end
 
-____M_e_n_u_______
+---------menu------------
 
 function drawMenus()
 	currentMenuPos = 1
@@ -991,7 +993,7 @@ function addMenuItem(text, menuid, func)
 	end
 end
 
-_____L_o_o_p_s_______
+---------loops-----------
 
 function loop()
 	drawScreen()
@@ -1125,9 +1127,7 @@ function cleanScreen()
 	term.clear()
 end
 
-----------------------
--- Custom Functions --
-----------------------
+--------------functions------------
 
 function quit()
 	cleanScreen()
@@ -1169,9 +1169,7 @@ function addotherwindow()
 	cleanScreen()
 end
 
-----------------
--- Population --
-----------------
+-----------Population----------
 
 addJust("Exit", quit)
 addJust("Shutdown", os.shutdown)
@@ -1195,8 +1193,6 @@ addMenuItem("Edit program", monimenu, editMonIconProgramW)
 addMenuItem("Delete monicon", monimenu, deleteMonIconW)
 addMenuItem("Change monitor", monimenu, changeMonitor)
 
-----------------
------ Run ------
-----------------
+-------run---------
 
 run()
