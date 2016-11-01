@@ -1098,28 +1098,6 @@ function clocky()
 	end
 end
 
-function run()
-	term.clear()
-	term.setCursorPos(1,1)
-	print("Checking for updates...")
-	if(checkUpdate())then
-		print("An update has been detected!")
-		print("Would you like to update? (Yes/No)")
-		write("> ")
-		update = read()
-	end
-	if(update == "Yes" or update == "yes" or update == "Y" or update == "y")then
-		file = assert(io.open("/startup", "w"))
-		file:write("shell.run('install')")
-		file:close()
-		os.reboot()
-	else
-		loadIcons()
-		loadMonIcons()
-		parallel.waitForAny(clocky, loop)
-	end
-end
-
 function cleanScreen()
 	term.setCursorPos(1, 1)
 	term.setBackgroundColor(colors.black)
