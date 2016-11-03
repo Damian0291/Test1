@@ -1199,7 +1199,7 @@ monimenu = addMenu("Monicon")
 
 addMenuItem("Lua", programs, lua)
 addMenuItem("Edit", programs, edit)
-addMenuItem("Shell", programs, shell)
+addMenuItem("Shell", programs, Command)
 addMenuItem("Paint", programs, paint)
 addMenuItem("Worm", games, worm)
 addMenuItem("Adventure", games, adventure)
