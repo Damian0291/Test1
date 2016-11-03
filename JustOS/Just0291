@@ -1,4 +1,4 @@
-wall = paintutils.loadImage("/JustOS/Desktop")
+chewall = paintutils.loadImage("/JustOS/Desktop")
 lastclick = os.clock()
 pressed = 0
 posx = 0
@@ -1144,6 +1144,12 @@ function quit()
 	cleanScreen()
 	print("Restart the computer to go back! (CTRL + R)")
 	error()
+end
+
+function Command()
+	cleanScreen()
+	shell.run("shell")
+	term.setCursorBlink(true)
 end
 
 function lua()
