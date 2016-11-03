@@ -1,4 +1,4 @@
-chewall = paintutils.loadImage("/JustOS/Desktop")
+wall = paintutils.loadImage("/JustOS/Desktop")
 lastclick = os.clock()
 pressed = 0
 posx = 0
