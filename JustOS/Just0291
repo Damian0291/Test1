@@ -89,7 +89,7 @@ function drawWindow(id)
 		for h = 1, window['width'] + 1 do
 			term.write(" ")
 		end
-		term.setCursorPos(window['xPos'] + 3, window['yPos'])
+		term.setCursorPos(window['xPos'] + 4, window['yPos'])
 		term.write(window['name'])
 		term.setBackgroundColor(colors.red)
 		term.setCursorPos(window["xPos"], window["yPos"])
