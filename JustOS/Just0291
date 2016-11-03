@@ -83,8 +83,8 @@ end
 function drawWindow(id)
 	window = windows[id]
 	if(window['minimised'] == false)then
-		term.setBackgroundColor(colors.purple)
-		term.setTextColor(colors.lime)
+		term.setBackgroundColor(colors.blue)
+		term.setTextColor(colors.white)
 		term.setCursorPos(window["xPos"], window["yPos"])
 		for h = 1, window['width'] + 1 do
 			term.write(" ")
@@ -97,7 +97,7 @@ function drawWindow(id)
 		term.setBackgroundColor(colors.lime)
 		term.setCursorPos(window["xPos"] + 1, window["yPos"])
 		term.write("_")
-		term.setBackgroundColor(colors.purple)
+		term.setBackgroundColor(colors.lightGray)
 		for x = window['xPos'], window['xPos'] + window['width'] do
 			for y = window['yPos'] + 1, window['yPos'] + window['height'] do
 				term.setCursorPos(x, y)
@@ -143,7 +143,7 @@ end
 
 function drawTaskBar()
 	w, h = term.getSize()
-	term.setBackgroundColor(colors.grey)
+	term.setBackgroundColor(colors.gray)
 	for x = 1, w do
 		term.setCursorPos(x, h)
 		term.write(" ")
@@ -189,7 +189,7 @@ function drawTaskBar()
 end
 
 function checkTaskBar(xPos, yPos)
-	w, h = term.getSize(1)
+	w, h = term.getSize()
 	if(yPos == h)then
 		if(xPos <= 4)then
 			Justmenu['active'] = not Justmenu['active']
