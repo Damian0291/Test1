@@ -19,7 +19,7 @@ downloadFile("/JustOS/icons/programs/Switch", "https://raw.githubusercontent.com
 downloadFile("/JustOS/monicons/SwitchLeft", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/monicons/SwitchLeft")
 downloadFile("/JustOS/monicons/programs/SwitchLeft", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/monicons/programs/SwitchLeft")
 downloadFile("/startup", "https://raw.githubusercontent.com/Damian0291/Test1/master/startup")
-downloadFIle("/JustOS/monitorside", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/monitorside")
+downloadFile("/JustOS/monitorside", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/monitorside")
 
 os.reboot()
 
