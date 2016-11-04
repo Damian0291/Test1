@@ -536,7 +536,7 @@ end
 
 function checkMonitor()
 	if(peripheral.wrap(monitorside))then
-		monitor = peripheral.wrap(monitorside)
+		monitor = (peripheral.wrap(monitorside))
 		return true
 	end
 	if(findModem())then
