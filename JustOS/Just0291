@@ -30,7 +30,7 @@ rClick['active'] = false
 rClick['width'] = 0
 rClickItems  = {}
 rItemID = 1
-monitorside = ""
+monitorside = "right" "left" "bottom" "top" "front" "back"
 monitor = ""
 
 function checkUpdate()
@@ -539,9 +539,9 @@ function checkMonitor()
 		monitor = peripheral.wrap(monitorside)
 		return true
 	end
-	if findModem() then
+	if (findModem()) then
 		p = peripheral.wrap(findModem())
-		if p.isPresentRemote(monitorside) then
+		if (p.isPresentRemote(monitorside)) then
 			monitor = peripheral.wrap(monitorside)
 			return true
 		end
