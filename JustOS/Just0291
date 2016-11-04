@@ -1064,11 +1064,9 @@ addMenuItem("Worm", games, worm)
 addMenuItem("Adventure", games, adventure)
 addMenuItem("Add window", sys, addotherwindow)
 addMenuItem("Add icon", sys, addIcon)
-addMenuItem("Add monicon", monimenu, addMonIcon)
 addMenuItem("Edit monicon", monimenu, editMonIconW)
 addMenuItem("Edit program", monimenu, editMonIconProgramW)
 addMenuItem("Delete monicon", monimenu, deleteMonIconW)
-addMenuItem("Change monitor", monimenu, changeMonitor)
 
 -------run---------
 
