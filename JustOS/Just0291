@@ -474,21 +474,7 @@ end
 
 ---------monicons------------
 
-function changeMonitor()
-	detectMonitors()
-	monitorside = textBox("Enter new monitor ID!", 1, "Enter new id or leave empty!")
-	while not checkMonitor() and monitorside ~= "" do
-		monitorside = textBox("Enter new monitor ID!", 1, "Enter new id or leave empty!")
-	end
-	if(monitorside == "")then
-		fs.delete("/JustOS/monitorside")
-	else
-		file = fs.open("/JustOS/monitorside", "w")
-		file.writeLine(monitorside)
-		file.close()
-		drawMonIcons()
-	end
-end
+
 
 function findModem()
 	sides = {"left", "right", "top", "bottom", "front", "back"}
@@ -545,16 +531,6 @@ function checkMonitor()
 			monitor = peripheral.wrap(monitorside)
 			return true
 		end
-	end
-	return false
-end
-
-function loadMonitor()
-	if fs.exists("/JustOS/monitorside") then
-		file = fs.open("/JustOS/monitorside", "r")
-		monitorside = file.readLine()
-		file.close()
-		return true
 	end
 	return false
 end
