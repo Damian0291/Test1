@@ -30,7 +30,7 @@ rClick['active'] = false
 rClick['width'] = 0
 rClickItems  = {}
 rItemID = 1
-monitorside = {"left", "right", "top", "bottom", "front", "back"}
+monitorside = "left", "right", "top", "bottom", "front", "back"
 monitor = ""
 
 function checkUpdate()
