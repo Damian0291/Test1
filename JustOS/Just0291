@@ -30,7 +30,7 @@ rClick['active'] = false
 rClick['width'] = 0
 rClickItems  = {}
 rItemID = 1
-monitorside = "left", "right", "top", "bottom", "front", "back"
+monitorside = ""
 monitor = ""
 
 function checkUpdate()
@@ -604,44 +604,6 @@ function drawMonIcons()
 		end
 		monitor.setBackgroundColor(colors.black)
 	end
-end
-
-function addMonIcon()
-	if not checkMonitor() then
-		detectMonitors()
-		monitorside = textBox("Monitor disconnected!", 1, "Enter new id or leave empty!")
-		while not checkMonitor() and monitorside ~= "" do
-			monitorside = textBox("Monitor disconnected!", 1, "Enter new id or leave empty!")
-		end
-		if(monitorside == "")then
-			fs.delete("/JustOS/monitorside")
-			return false
-		else
-			file = fs.open("/JustOS/monitorside", "w")
-			file.writeLine(monitorside)
-			file.close()
-		end
-	end
-	drawScreen()
-	name = textBox("Enter icon name:")
-	filename = string.gsub(name, " ", "_")
-	icon = makeMonIcon(name)
-	cleanScreen()
-	print("Please draw an icon at top left corner!")
-	print("The max size is 7x5! Do not draw bigger!")
-	sleep(5)
-	shell.run("paint", "/JustOS/monicons/" .. filename)
-	if(not fs.exists("/JustOS/monicons/programs/"))then fs.makeDir("/JustOS/monicons/programs") end
-	if(not fs.exists("/JustOS/monicons/programs/" .. filename))then
-		file = assert(io.open("/JustOS/monicons/programs/" .. filename, "w"))
-		file:write("")
-		file:close()
-	end
-	cleanScreen()
-	print("Now you can edit your program!")
-	sleep(2)
-	shell.run("edit", "/JustOS/monicons/programs/" .. filename)
-	drawMonIcons()
 end
 
 function makeMonIcon(name)
