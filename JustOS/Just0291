@@ -474,7 +474,21 @@ end
 
 ---------monicons------------
 
-
+function changeMonitor()
+	detectMonitors()
+	monitorside = textBox("Enter new monitor ID!", 1, "Enter new id or leave empty!")
+	while not checkMonitor() and monitorside ~= "" do
+		monitorside = textBox("Enter new monitor ID!", 1, "Enter new id or leave empty!")
+	end
+	if(monitorside == "")then
+		fs.delete("/JustOS/monitorside")
+	else
+		file = fs.open("/JustOS/monitorside", "w")
+		file.writeLine(monitorside)
+		file.close()
+		drawMonIcons()
+	end
+end
 
 function findModem()
 	sides = {"left", "right", "top", "bottom", "front", "back"}
@@ -535,6 +549,16 @@ function checkMonitor()
 	return false
 end
 
+function loadMonitor()
+	if fs.exists("/JustOS/monitorside") then
+		file = fs.open("/JustOS/monitorside", "r")
+		monitorside = file.readLine()
+		file.close()
+		return true
+	end
+	return false
+end
+
 function loadMonIcons()
 	local FileList = fs.list("/JustOS/monicons")
 	for _, file in ipairs(FileList) do
@@ -580,6 +604,44 @@ function drawMonIcons()
 		end
 		monitor.setBackgroundColor(colors.black)
 	end
+end
+
+function addMonIcon()
+	if not checkMonitor() then
+		detectMonitors()
+		monitorside = textBox("Monitor disconnected!", 1, "Enter new id or leave empty!")
+		while not checkMonitor() and monitorside ~= "" do
+			monitorside = textBox("Monitor disconnected!", 1, "Enter new id or leave empty!")
+		end
+		if(monitorside == "")then
+			fs.delete("/JustOS/monitorside")
+			return false
+		else
+			file = fs.open("/JustOS/monitorside", "w")
+			file.writeLine(monitorside)
+			file.close()
+		end
+	end
+	drawScreen()
+	name = textBox("Enter icon name:")
+	filename = string.gsub(name, " ", "_")
+	icon = makeMonIcon(name)
+	cleanScreen()
+	print("Please draw an icon at top left corner!")
+	print("The max size is 7x5! Do not draw bigger!")
+	sleep(5)
+	shell.run("paint", "/JustOS/monicons/" .. filename)
+	if(not fs.exists("/JustOS/monicons/programs/"))then fs.makeDir("/JustOS/monicons/programs") end
+	if(not fs.exists("/JustOS/monicons/programs/" .. filename))then
+		file = assert(io.open("/JustOS/monicons/programs/" .. filename, "w"))
+		file:write("")
+		file:close()
+	end
+	cleanScreen()
+	print("Now you can edit your program!")
+	sleep(2)
+	shell.run("edit", "/JustOS/monicons/programs/" .. filename)
+	drawMonIcons()
 end
 
 function makeMonIcon(name)
@@ -944,6 +1006,85 @@ end
 
 ---------loops-----------
 
+function loop()
+	drawScreen()
+		if(loadMonitor())then
+		if(not checkMonitor())then
+			detectMonitors()
+			while not checkMonitor() and monitorside ~= "" do
+				monitorside = textBox("Monitor disconnected!", 1, "Enter new id or leave empty!")
+			end
+			if(monitorside == "")then
+				fs.delete("/JustOS/monitorside")
+			else
+				file = fs.open("/JustOS/monitorside", "w")
+				file.writeLine(monitorside)
+				file.close()
+			end
+			drawScreen()
+		end
+	end
+	if(checkMonitor())then
+		drawMonIcons()
+	end
+	while true do
+		if(deleteWindowid > 0)then 
+			deleteWindow(deleteWindowid)
+			deleteWindowid = 0 
+			drawScreen()
+		end
+		event, variable, xPos, yPos = os.pullEvent()
+		w, h = term.getSize()
+		if event == "mouse_click" then
+			if variable == 1 then
+				if(not rClickCheck(xPos, yPos))then
+					rClickReset()
+					check = 0
+					if(checkTaskBar(xPos, yPos) == false)then
+						if(checkMenus(xPos, yPos) == false)then
+							check = checkWindows(xPos, yPos)
+						end
+					end
+					if(check > 0)then
+						pressed = check
+						grabx = xPos - windows[pressed]['xPos']
+					else
+						pressed = 0
+					end
+					if(os.clock() - lastclick >= .05 and os.clock() - lastclick <= 0.5)then
+						checkIcons(true, xPos, yPos)
+					end
+					lastclick = os.clock()
+				end
+				drawScreen()
+			else
+				if(not checkIcons(false, xPos, yPos))then
+					checkDestktop(xPos, yPos)
+				end
+				rClickDraw()
+			end
+		end
+		if event == "monitor_touch" then
+			if variable == monitorside then
+				checkMonIcons(xPos, yPos)
+			end
+		end
+		if event == "mouse_drag" then
+			if(pressed > 0)then
+				windows[pressed]['xPos'] = xPos - grabx
+				if(yPos < h and yPos > 1)then windows[pressed]['yPos'] = yPos end
+				drawScreen()
+			end
+		end
+		if event == "alarm" then
+			drawClock()
+			if(os.time() == 0)then
+				drawScreen()
+			end
+		end
+	end
+end
+
 function drawClock()
 	w, h = term.getSize()
 	term.setTextColor(colors.cyan)
@@ -1064,9 +1205,11 @@ addMenuItem("Worm", games, worm)
 addMenuItem("Adventure", games, adventure)
 addMenuItem("Add window", sys, addotherwindow)
 addMenuItem("Add icon", sys, addIcon)
+addMenuItem("Add monicon", monimenu, addMonIcon)
 addMenuItem("Edit monicon", monimenu, editMonIconW)
 addMenuItem("Edit program", monimenu, editMonIconProgramW)
 addMenuItem("Delete monicon", monimenu, deleteMonIconW)
+addMenuItem("Change monitor", monimenu, changeMonitor)
 
 -------run---------
 
