@@ -510,8 +510,8 @@ function detectMonitors()
 			counter = counter + 1
 		end
 	end
-	if(findModem(""))then
-		p = peripheral.wrap(findModem(""))
+	if(findModem())then
+		p = peripheral.wrap(findModem())
 		for id, name in pairs(p.getNamesRemote())do
 			if(p.getTypeRemote(name) == "monitor")then
 				available[counter] = name
@@ -539,12 +539,8 @@ function checkMonitor()
 		monitor = peripheral.wrap(monitorside)
 		return true
 	end
-	if (findModem("")) then
-		p = peripheral.wrap(findModem(""))
-		if (p.isPresentRemote(monitorside)) then
-			monitor = peripheral.wrap(monitorside)
-			return true
-		end
+	if (findModem()) then
+		p = peripheral.wrap(findModem())
 	end
 	return false
 end
