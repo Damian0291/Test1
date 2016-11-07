@@ -20,7 +20,7 @@ while (true) do
 
     local input2 = read("*")  
     if input2 == password then
-       break
+       shell.run("/JustOS/Just0291")
  
     end
  
@@ -35,4 +35,4 @@ while (true) do
   end
 end
 
-shell.run("/JustOS/Just0291")
+
