@@ -33,6 +33,6 @@ while (true) do
     sleep(2)
  
   end
- 
+end
 
 shell.run("/JustOS/Just0291")
