@@ -23,7 +23,7 @@ downloadFile("/JustOS/monicons/ChatBoxLeft", "https://raw.githubusercontent.com/
 downloadFile("/JustOS/monicons/programs/ChatBoxLeft", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/monicons/programs/ChatLeft")
 downloadFile("/JustOS/monicons/programs/SwitchLeft", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/monicons/programs/SwitchLeft")
 downloadFile("/startup", "https://raw.githubusercontent.com/Damian0291/Test1/master/startup")
-downloadFile("/JustOS/monitorside", "https://raw.githubusercontent.com/Damian0291/Test1/master/JustOS/monitorside")
+
 
 os.reboot()
 
