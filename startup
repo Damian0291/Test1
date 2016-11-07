@@ -4,7 +4,7 @@ os.pullEvent = os.pullEventRaw
 local code = "JustOS"
 local password = "Passwordd"
  
-while(true) do
+while (true) do
  
   term.clear()
  
