@@ -1,1 +1,38 @@
+local old_pullEvent = os.pullEvent
+os.pullEvent = os.pullEventRaw
+ 
+local code = "JustOS"
+local password = "Passwordd"
+ 
+while(true) do
+ 
+  term.clear()
+ 
+
+  term.setCursorPos(1,1)
+  write("Console: ") -- Purely optional but worth the effort
+ 
+  local input = read()
+ 
+  if input == code then
+
+    write("Password: ")
+
+    local input2 = read("*")  
+    if input2 == password then
+       break
+ 
+    end
+ 
+    print("Access Denied")
+    sleep(2)
+ 
+  else
+
+    print("Access Denied")
+    sleep(2)
+ 
+  end
+ 
+
 shell.run("/JustOS/Just0291")
